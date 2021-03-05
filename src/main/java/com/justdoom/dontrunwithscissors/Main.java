@@ -7,11 +7,11 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 @Mod("dontrunwith")
-public class main {
+public class Main {
     public static final String MOD_ID = "dontrunwith";
     //private static final Logger LOGGER = LogManager.getLogger();
 
-    public main() {
+    public Main() {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
 
