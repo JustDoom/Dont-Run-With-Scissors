@@ -18,7 +18,8 @@ public class FallDamageListener {
 
         PlayerEntity player = (PlayerEntity) event.getEntity();
         if (player.getLastDamageSource() == DamageSource.FALL
-                && player.getHeldItemMainhand().getItem() instanceof ShearsItem
+                && (player.getHeldItemMainhand().getItem() instanceof ShearsItem
+                || player.getHeldItemOffhand().getItem() instanceof ShearsItem)
                 && (int) (Math.random() * 5) == 0) {
             player.setHealth(0);
         }

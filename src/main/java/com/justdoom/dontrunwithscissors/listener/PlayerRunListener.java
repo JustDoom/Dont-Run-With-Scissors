@@ -21,7 +21,9 @@ public class PlayerRunListener {
         if (player.prevDistanceWalkedModified == player.distanceWalkedModified
             || !player.isSprinting()) return;
 
-        if (player.getHeldItemMainhand().getItem() instanceof ShearsItem && (int) (Math.random() * 10) == 0) {
+        if ((player.getHeldItemMainhand().getItem() instanceof ShearsItem
+                || player.getHeldItemOffhand().getItem() instanceof ShearsItem)
+                && (int) (Math.random() * 10) == 0) {
             player.attackEntityFrom(DamageSource.MAGIC, 2);
         }
     }
