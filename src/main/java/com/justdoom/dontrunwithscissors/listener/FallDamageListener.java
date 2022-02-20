@@ -16,10 +16,7 @@ public class FallDamageListener {
 
     @SubscribeEvent
     public static void event(LivingDamageEvent event) {
-        System.out.println(1);
         if (!(event.getEntity() instanceof PlayerEntity)) return;
-
-        System.out.println(2);
 
         PlayerEntity player = (PlayerEntity) event.getEntity();
         if (event.getSource() == DamageSource.FALL
