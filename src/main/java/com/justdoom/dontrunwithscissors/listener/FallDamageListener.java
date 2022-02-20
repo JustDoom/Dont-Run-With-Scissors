@@ -22,7 +22,7 @@ public class FallDamageListener {
         if (event.getSource() == DamageSource.FALL
                 && (player.getMainHandItem().getItem() instanceof ShearsItem
                 || player.getOffhandItem().getItem() instanceof ShearsItem)
-                && (int) (Math.random() * 5) == 0) { // TODO: change way to randomly get if player will be damaged
+                && (int) (Math.random() * 5) == 0) {
             event.setCanceled(true);
             player.hurt(Main.SHEARS, Float.MAX_VALUE);
         }

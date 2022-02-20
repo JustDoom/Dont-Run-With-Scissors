@@ -37,16 +37,9 @@ public class PlayerRunListener {
 
         if ((player.getMainHandItem().getItem() instanceof ShearsItem
                 || player.getOffhandItem().getItem() instanceof ShearsItem)
-                && Math.random() > DontRunConfig.run_damage_chance.get()) { // TODO: change way to randomly get if player will be damaged
+                && Math.random() > DontRunConfig.run_damage_chance.get()) {
 
             player.hurt(Main.SHEARS, DontRunConfig.run_damage_amount.get() == -1 ? Float.MAX_VALUE : DontRunConfig.run_damage_amount.get());
-        }
-    }
-
-    @SubscribeEvent
-    public static void playerSpawnEvent(LivingSpawnEvent event) {
-        if(event.getEntityLiving() instanceof PlayerEntity) {
-            ((PlayerEntity) event.getEntity()).inventory.add(new ItemStack(Items.SHEARS.getItem()));
         }
     }
 }
