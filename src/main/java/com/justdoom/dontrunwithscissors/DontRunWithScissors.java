@@ -1,7 +1,7 @@
 package com.justdoom.dontrunwithscissors;
 
 import com.justdoom.dontrunwithscissors.config.DontRunConfig;
-import net.minecraft.util.DamageSource;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;

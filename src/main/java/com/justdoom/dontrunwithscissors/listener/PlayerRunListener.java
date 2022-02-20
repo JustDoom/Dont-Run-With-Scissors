@@ -2,10 +2,10 @@ package com.justdoom.dontrunwithscissors.listener;
 
 import com.justdoom.dontrunwithscissors.DontRunWithScissors;
 import com.justdoom.dontrunwithscissors.config.DontRunConfig;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ShearsItem;
-import net.minecraft.util.Util;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.Util;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ShearsItem;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -15,14 +15,14 @@ public class PlayerRunListener {
 
     @SubscribeEvent
     public static void event(TickEvent.PlayerTickEvent event) {
-        PlayerEntity player = event.player;
+        Player player = event.player;
 
         if (player.walkDist == player.walkDistO
             || !player.isSprinting()) return;
 
         if(DontRunConfig.cancel_sprinting.get()) {
             player.setSprinting(false);
-            player.sendMessage(new TranslationTextComponent(DontRunConfig.cancel_sprinting_message.get()), Util.NIL_UUID);
+            player.sendMessage(new TextComponent(DontRunConfig.cancel_sprinting_message.get()), Util.NIL_UUID);
         }
 
         if ((player.getMainHandItem().getItem() instanceof ShearsItem
