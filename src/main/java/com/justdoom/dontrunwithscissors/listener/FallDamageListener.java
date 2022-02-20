@@ -18,10 +18,10 @@ public class FallDamageListener {
 
         PlayerEntity player = (PlayerEntity) event.getEntity();
         if (player.getLastDamageSource() == DamageSource.FALL
-                && (player.getHeldItemMainhand().getItem() instanceof ShearsItem
-                || player.getHeldItemOffhand().getItem() instanceof ShearsItem)
-                && (int) (Math.random() * 5) == 0) {
-            player.setHealth(0);
+                && (player.getMainHandItem().getItem() instanceof ShearsItem
+                || player.getOffhandItem().getItem() instanceof ShearsItem)
+                && (int) (Math.random() * 5) == 0) { // TODO: change way to randomly get if player will be damaged
+            player.kill();
         }
     }
 }
