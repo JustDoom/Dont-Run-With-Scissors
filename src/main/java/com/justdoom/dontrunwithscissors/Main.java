@@ -1,6 +1,7 @@
 package com.justdoom.dontrunwithscissors;
 
 import com.justdoom.dontrunwithscissors.config.DontRunConfig;
+import net.minecraft.util.DamageSource;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
@@ -14,7 +15,7 @@ public class Main {
     public static final String MOD_ID = "dontrunwith";
     //private static final Logger LOGGER = LogManager.getLogger();
 
-    //public static DamageSource SHEARS = new DamageSource("shears");
+    public static DamageSource SHEARS = new DamageSource("shears").bypassArmor();
 
     public Main() {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);

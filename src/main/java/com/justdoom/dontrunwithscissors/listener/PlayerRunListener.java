@@ -1,6 +1,7 @@
 package com.justdoom.dontrunwithscissors.listener;
 
 import com.justdoom.dontrunwithscissors.Main;
+import com.justdoom.dontrunwithscissors.config.DontRunConfig;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -29,15 +30,15 @@ public class PlayerRunListener {
 
         if ((player.getMainHandItem().getItem() instanceof ShearsItem
                 || player.getOffhandItem().getItem() instanceof ShearsItem)
-                && (int) (Math.random() * 10) == 0) { // TODO: change way to randomly get if player will be damaged
+                && Math.random() > DontRunConfig.run_damage_chance.get()) { // TODO: change way to randomly get if player will be damaged
 
-            player.hurt(DamageSource.MAGIC, 2);
+            player.hurt(Main.SHEARS, DontRunConfig.run_damage_amount.get() == -1 ? Float.MAX_VALUE : DontRunConfig.run_damage_amount.get());
         }
     }
 
     @SubscribeEvent
     public static void playerSpawnEvent(LivingSpawnEvent event) {
-        if(event.getEntity() instanceof PlayerEntity) {
+        if(event.getEntityLiving() instanceof PlayerEntity) {
             ((PlayerEntity) event.getEntity()).inventory.add(new ItemStack(Items.SHEARS.getItem()));
         }
     }

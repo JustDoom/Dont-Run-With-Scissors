@@ -2,7 +2,9 @@ advancement for running and dying from scissors
 stop sprinting with scissors (either message, cancel event or both)
 death messages
 - Player ran with scissors
-- Player tripped and fell on their scissors
 config option to
 - change damage dealt on fall and run
 - configure any feature
+
+done:
+- Player tripped and fell on their scissors
