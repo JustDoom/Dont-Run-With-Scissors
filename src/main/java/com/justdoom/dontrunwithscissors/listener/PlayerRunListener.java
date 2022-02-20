@@ -8,6 +8,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.ShearsItem;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.text.TextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.common.Tags;
@@ -27,6 +29,11 @@ public class PlayerRunListener {
 
         if (player.walkDist == player.walkDistO
             || !player.isSprinting()) return;
+
+        if(DontRunConfig.cancel_sprinting.get()) {
+            player.setSprinting(false);
+            player.sendMessage(new TranslationTextComponent(DontRunConfig.cancel_sprinting_message.get()), player.getUUID());
+        }
 
         if ((player.getMainHandItem().getItem() instanceof ShearsItem
                 || player.getOffhandItem().getItem() instanceof ShearsItem)
