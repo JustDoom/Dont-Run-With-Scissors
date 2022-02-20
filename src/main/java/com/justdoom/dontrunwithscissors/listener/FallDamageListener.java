@@ -1,30 +1,31 @@
 package com.justdoom.dontrunwithscissors.listener;
 
-import com.justdoom.dontrunwithscissors.Main;
+import com.justdoom.dontrunwithscissors.DontRunWithScissors;
+import com.justdoom.dontrunwithscissors.config.DontRunConfig;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ShearsItem;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
-import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber(modid = Main.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
+@Mod.EventBusSubscriber(modid = DontRunWithScissors.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class FallDamageListener {
 
     @SubscribeEvent
-    public static void event(LivingDamageEvent event) {
+    public static void event(LivingFallEvent event) {
         if (!(event.getEntity() instanceof PlayerEntity)) return;
 
         PlayerEntity player = (PlayerEntity) event.getEntity();
-        if (event.getSource() == DamageSource.FALL
+        System.out.println(event.getDistance());
+        if (event.getDistance() > 3.0
                 && (player.getMainHandItem().getItem() instanceof ShearsItem
                 || player.getOffhandItem().getItem() instanceof ShearsItem)
-                && (int) (Math.random() * 5) == 0) {
+                && Math.random() < DontRunConfig.fall_damage_chance.get()) {
             event.setCanceled(true);
-            player.hurt(Main.SHEARS, Float.MAX_VALUE);
+            player.hurt(DontRunWithScissors.SHEARS_FALL, player.getHealth());
         }
     }
 }
