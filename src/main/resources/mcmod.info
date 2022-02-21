@@ -1,0 +1,16 @@
+[
+{
+  "modid": "dontrunwith",
+  "name": "Dont Run With Scissors",
+  "description": "If you run with shears you will take damage.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["JustDoom"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

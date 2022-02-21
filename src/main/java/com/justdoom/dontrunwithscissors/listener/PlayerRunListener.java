@@ -2,34 +2,34 @@ package com.justdoom.dontrunwithscissors.listener;
 
 import com.justdoom.dontrunwithscissors.DontRunWithScissors;
 import com.justdoom.dontrunwithscissors.config.DontRunConfig;
-import net.minecraft.Util;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ShearsItem;
-import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+import ibxm.Player;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemShears;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
 
-@Mod.EventBusSubscriber(modid = DontRunWithScissors.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+@Mod.EventBusSubscriber(modid = DontRunWithScissors.MOD_ID)
 public class PlayerRunListener {
 
     @SubscribeEvent
     public static void event(TickEvent.PlayerTickEvent event) {
-        Player player = event.player;
+        EntityPlayer player = event.player;
 
-        if (player.walkDist == player.walkDistO
+        if (player.distanceWalkedModified == player.prevDistanceWalkedModified
             || !player.isSprinting()) return;
 
-        if(DontRunConfig.cancel_sprinting.get()) {
+        if(DontRunConfig.cancel_sprinting) {
             player.setSprinting(false);
-            player.sendMessage(new TextComponent(DontRunConfig.cancel_sprinting_message.get()), Util.NIL_UUID);
+            player.sendMessage(new TextComponentTranslation(DontRunConfig.cancel_sprinting_message));
         }
 
-        if ((player.getMainHandItem().getItem() instanceof ShearsItem
-                || player.getOffhandItem().getItem() instanceof ShearsItem)
-                && Math.random() < DontRunConfig.run_damage_chance.get()) {
+        if ((player.getHeldItemMainhand().getItem() instanceof ItemShears
+                || player.getHeldItemOffhand().getItem() instanceof ItemShears)
+                && Math.random() < DontRunConfig.run_damage_chance) {
 
-            player.hurt(DontRunWithScissors.SHEARS, DontRunConfig.run_damage_amount.get() == -1 ? player.getHealth() : DontRunConfig.run_damage_amount.get());
+            player.attackEntityFrom(DontRunWithScissors.SHEARS, DontRunConfig.run_damage_amount == -1 ? player.getHealth() : DontRunConfig.run_damage_amount);
         }
     }
 }
