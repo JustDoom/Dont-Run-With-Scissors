@@ -2,7 +2,6 @@ package com.justdoom.dontrunwithscissors.listener;
 
 import com.justdoom.dontrunwithscissors.DontRunWithScissors;
 import com.justdoom.dontrunwithscissors.config.DontRunConfig;
-import ibxm.Player;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemShears;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
