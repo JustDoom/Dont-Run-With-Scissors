@@ -2,26 +2,23 @@ package com.justdoom.dontrunwithscissors.listener;
 
 import com.justdoom.dontrunwithscissors.DontRunWithScissors;
 import com.justdoom.dontrunwithscissors.config.DontRunConfig;
-import ibxm.Player;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemShears;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-@Mod.EventBusSubscriber(modid = DontRunWithScissors.MOD_ID)
 public class FallDamageListener {
 
     @SubscribeEvent
-    public static void event(LivingFallEvent event) {
-        if (!(event.getEntity() instanceof EntityPlayer)) return;
+    public void event(LivingFallEvent event) {
+        if (!(event.entity instanceof EntityPlayer)) return;
 
-        EntityPlayer player = (EntityPlayer) event.getEntity();
-        if (event.getDistance() > 3.0
-                && (player.getHeldItemMainhand().getItem() instanceof ItemShears
-                || player.getHeldItemOffhand().getItem() instanceof ItemShears)
+        EntityPlayer player = (EntityPlayer) event.entity;
+        if (player.getHeldItem() != null
+                && event.distance > 3.0
+                && player.getHeldItem().getItem() == Items.shears
                 && Math.random() < DontRunConfig.fall_damage_chance) {
-            event.setCanceled(true);
             player.attackEntityFrom(DontRunWithScissors.SHEARS_FALL, player.getHealth());
         }
     }
