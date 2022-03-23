@@ -19,7 +19,6 @@ public class FallDamageListener {
         if (!(event.getEntity() instanceof PlayerEntity)) return;
 
         PlayerEntity player = (PlayerEntity) event.getEntity();
-        System.out.println(event.getDistance());
         if (event.getDistance() > 3.0
                 && (player.getMainHandItem().getItem() instanceof ShearsItem
                 || player.getOffhandItem().getItem() instanceof ShearsItem)
