@@ -29,8 +29,8 @@ jobs:
       run: |
         ./gradlew build
         
-    - name: Upload Artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: justneeded-artifact
-        path: '**/build/libs/*-all.jar'
+    - run: mkdir staging && cp build/libs/*.jar staging
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Package
+          path: staging
