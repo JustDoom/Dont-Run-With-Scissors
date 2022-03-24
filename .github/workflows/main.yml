@@ -1,14 +1,36 @@
-name: CI
-on: [push]
+name: Dont Run With Scissors
+
+on:
+  push:
+  pull_request:
+
 jobs:
   build:
+
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v2
-      - name: Set up JDK 8
-        uses: actions/setup-java@v2
-        with:
-          java-version: 8
-          distribution: 'adopt'
-      - name: Build with Gradle
-        run: ./gradlew build
+    - uses: actions/checkout@v2
+    - name: Set up JDK 1.8
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.8
+        
+    - uses: actions/cache@v2
+      with:
+        path: |
+          ~/.gradle/caches
+          ~/.gradle/wrapper
+        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+        restore-keys: |
+          ${{ runner.os }}-gradle-
+        
+    - name: Build Dont Run With Scissors
+      run: |
+        ./gradlew build
+        
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: justneeded-artifact
+        path: '**/build/libs/*-all.jar'
