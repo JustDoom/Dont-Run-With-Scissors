@@ -19,7 +19,6 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build
-        
     - run: mkdir staging && cp build/libs/*.jar staging
       - uses: actions/upload-artifact@v2
         with:
