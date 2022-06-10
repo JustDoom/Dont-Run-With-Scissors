@@ -3,7 +3,7 @@
   "modid": "dontrunwith",
   "name": "Dont Run With Scissors",
   "description": "If you run with shears you will take damage.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "mcversion": "1.8.9",
   "url": "",
   "updateUrl": "",

@@ -19,13 +19,14 @@ public class PlayerRunListener {
             || !player.isSprinting()
             || player.getHeldItem() == null) return;
 
-        if(DontRunConfig.cancel_sprinting) {
-            player.setSprinting(false);
-            player.addChatMessage(new ChatComponentText(DontRunConfig.cancel_sprinting_message));
-        }
-
         if (player.getHeldItem().getItem() == Items.shears
                 && Math.random() < DontRunConfig.run_damage_chance) {
+
+            if(DontRunConfig.cancel_sprinting) {
+                player.setSprinting(false);
+                player.addChatMessage(new ChatComponentText(DontRunConfig.cancel_sprinting_message));
+                return;
+            }
 
             player.attackEntityFrom(DontRunWithScissors.SHEARS, DontRunConfig.run_damage_amount == -1 ? player.getHealth() : DontRunConfig.run_damage_amount);
         }

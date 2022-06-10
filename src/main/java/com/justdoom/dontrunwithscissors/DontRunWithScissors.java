@@ -10,7 +10,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 import java.io.File;
 
-@Mod(modid = DontRunWithScissors.MOD_ID, name = "Dont Run With Scissors", version = "1.0.0")
+@Mod(modid = DontRunWithScissors.MOD_ID, name = "Dont Run With Scissors", version = "1.0.1")
 public class DontRunWithScissors {
 
     public static final String MOD_ID = "dontrunwith";
