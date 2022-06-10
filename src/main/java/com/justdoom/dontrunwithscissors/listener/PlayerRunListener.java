@@ -20,14 +20,15 @@ public class PlayerRunListener {
         if (player.distanceWalkedModified == player.prevDistanceWalkedModified
             || !player.isSprinting()) return;
 
-        if(DontRunConfig.cancel_sprinting) {
-            player.setSprinting(false);
-            player.sendMessage(new TextComponentTranslation(DontRunConfig.cancel_sprinting_message));
-        }
-
         if ((player.getHeldItemMainhand().getItem() instanceof ItemShears
                 || player.getHeldItemOffhand().getItem() instanceof ItemShears)
                 && Math.random() < DontRunConfig.run_damage_chance) {
+
+            if(DontRunConfig.cancel_sprinting) {
+                player.setSprinting(false);
+                player.sendMessage(new TextComponentTranslation(DontRunConfig.cancel_sprinting_message));
+                return;
+            }
 
             player.attackEntityFrom(DontRunWithScissors.SHEARS, DontRunConfig.run_damage_amount == -1 ? player.getHealth() : DontRunConfig.run_damage_amount);
         }
