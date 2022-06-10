@@ -20,14 +20,14 @@ public class PlayerRunListener {
         if (player.walkDist == player.walkDistO
             || !player.isSprinting()) return;
 
-        if(DontRunConfig.cancel_sprinting.get()) {
-            player.setSprinting(false);
-            player.sendMessage(new TextComponent(DontRunConfig.cancel_sprinting_message.get()), Util.NIL_UUID);
-        }
-
         if ((player.getMainHandItem().getItem() instanceof ShearsItem
                 || player.getOffhandItem().getItem() instanceof ShearsItem)
                 && Math.random() < DontRunConfig.run_damage_chance.get()) {
+
+            if(DontRunConfig.cancel_sprinting.get()) {
+                player.setSprinting(false);
+                player.displayClientMessage(new TextComponent(DontRunConfig.cancel_sprinting_message.get()), true);
+            }
 
             player.hurt(DontRunWithScissors.SHEARS, DontRunConfig.run_damage_amount.get() == -1 ? player.getHealth() : DontRunConfig.run_damage_amount.get());
         }
