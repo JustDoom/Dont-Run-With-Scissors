@@ -19,7 +19,7 @@ public class PlayerRunListener {
     public static void event(TickEvent.PlayerTickEvent event) {
         Player player = event.player;
 
-        if (player.walkDist == player.walkDistO || !player.isSprinting()) return;
+        if (player.walkDist == player.walkDistO || !player.isSprinting() || (!DontRunConfig.damage_in_liquid.get() && (player.isInWater() || player.isInLava()))) return;
 
         if ((player.getMainHandItem().getItem() instanceof ShearsItem
                 || player.getOffhandItem().getItem() instanceof ShearsItem)
