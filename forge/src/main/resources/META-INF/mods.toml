@@ -1,6 +1,6 @@
 modLoader = "javafml"
 loaderVersion = "[47,)"
-issueTrackerURL = "https://github.com/JustDoom/ItsStillExplosive/issues"
+issueTrackerURL = "https://github.com/JustDoom/Dont-Run-With-Scissors/issues"
 license = "MIT"
 
 [[mods]]
@@ -9,7 +9,7 @@ version = "${version}"
 displayName = "Dont Run With Scissors"
 authors = "JustDoom"
 description = '''
-Makes explosive items actually explosive
+Running with scissors is dangerous, even in Minecraft
 '''
 logoFile = "logo.png"
 
