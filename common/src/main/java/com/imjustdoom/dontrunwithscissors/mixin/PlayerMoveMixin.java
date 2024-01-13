@@ -1,9 +1,11 @@
 package com.imjustdoom.dontrunwithscissors.mixin;
 
-import com.imjustdoom.dontrunwithscissors.DontRunWithScissors;
+import com.imjustdoom.dontrunwithscissors.config.Config;
+import com.imjustdoom.dontrunwithscissors.interfaces.DamageSourcesInterface;
+import com.imjustdoom.dontrunwithscissors.util.ScissorsUtil;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ServerboundMovePlayerPacket;
 import net.minecraft.server.network.ServerGamePacketListenerImpl;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -19,10 +21,19 @@ public abstract class PlayerMoveMixin {
         Player player = packet.player;
 
         if (player.isSprinting()
-                && (DontRunWithScissors.isScissorsItem(player.getItemInHand(InteractionHand.MAIN_HAND))
-                || DontRunWithScissors.isScissorsItem(player.getItemInHand(InteractionHand.OFF_HAND)))
-                && (int) (Math.random() * 10) == 0) {
-            player.hurt(player.damageSources().magic(), 2f);
+                && Config.damageIfSprinting
+                && ScissorsUtil.isInHand(player)
+                && !(Config.ignoreInWater && player.isInWater())
+                && !(Config.ignoreInLava && player.isInLava())
+                && Math.random() < Config.sprintingChance) {
+
+            if (Config.cancelSprinting) {
+                player.setSprinting(false);
+                player.displayClientMessage(Component.translatable("warning.scissors"), true); // TODO: use lang file if config is empty
+                return;
+            }
+
+            player.hurt(((DamageSourcesInterface) player.damageSources()).scissors(), Config.sprintingDamage == -1 ? player.getHealth() : Config.sprintingDamage);
         }
     }
 }

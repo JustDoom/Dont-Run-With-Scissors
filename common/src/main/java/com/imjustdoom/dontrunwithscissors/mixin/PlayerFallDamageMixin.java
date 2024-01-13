@@ -1,7 +1,8 @@
 package com.imjustdoom.dontrunwithscissors.mixin;
 
-import com.imjustdoom.dontrunwithscissors.DontRunWithScissors;
-import net.minecraft.world.InteractionHand;
+import com.imjustdoom.dontrunwithscissors.config.Config;
+import com.imjustdoom.dontrunwithscissors.interfaces.DamageSourcesInterface;
+import com.imjustdoom.dontrunwithscissors.util.ScissorsUtil;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
 import org.spongepowered.asm.mixin.Mixin;
@@ -17,9 +18,10 @@ public abstract class PlayerFallDamageMixin {
         LivingEntity entity = (LivingEntity) (Object) this;
 
         if (!entity.level().isClientSide
-                && (DontRunWithScissors.isScissorsItem(entity.getItemInHand(InteractionHand.MAIN_HAND))
-                || DontRunWithScissors.isScissorsItem(entity.getItemInHand(InteractionHand.OFF_HAND)))) {
-            entity.hurt(entity.damageSources().magic(), 2f);
+                && Config.damageOnFall
+                && ScissorsUtil.isInHand(entity)
+                && Math.random() < Config.fallingChance) {
+            entity.hurt(((DamageSourcesInterface) entity.damageSources()).fallingScissors(), Config.fallDamage == -1 ? entity.getHealth() : Config.fallDamage);
         }
     }
 }

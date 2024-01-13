@@ -1,0 +1,5 @@
+{
+  "death.attack.scissors": "%1$s was running with scissors!",
+  "death.attack.scissors_fall": "%1$s tripped and fell on their scissors",
+  "warning.scissors": "Oi, Don't run with scissors (shears)"
+}
