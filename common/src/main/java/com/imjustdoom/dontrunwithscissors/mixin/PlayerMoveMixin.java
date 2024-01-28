@@ -21,19 +21,20 @@ public abstract class PlayerMoveMixin {
         Player player = packet.player;
 
         if (player.isSprinting()
-                && Config.damageIfSprinting
+                && Config.isDamageIfSprinting()
                 && ScissorsUtil.isInHand(player)
-                && !(Config.ignoreInWater && player.isInWater())
-                && !(Config.ignoreInLava && player.isInLava())
-                && Math.random() < Config.sprintingChance) {
+                && !(Config.isIgnoreInWater() && player.isInWater())
+                && !(Config.isIgnoreInLava() && player.isInLava())) {
 
-            if (Config.cancelSprinting) {
-                player.setSprinting(false);
+            if (Config.isCancelSprinting()) {
+//                player.setSprinting(false);
                 player.displayClientMessage(Component.translatable("warning.scissors"), true); // TODO: use lang file if config is empty
                 return;
             }
 
-            player.hurt(((DamageSourcesInterface) player.damageSources()).scissors(), Config.sprintingDamage == -1 ? player.getHealth() : Config.sprintingDamage);
+            if (Math.random() < Config.getSprintingChance()) {
+                player.hurt(((DamageSourcesInterface) player.damageSources()).scissors(), Config.getSprintingDamage() == -1 ? player.getHealth() : Config.getSprintingDamage());
+            }
         }
     }
 }

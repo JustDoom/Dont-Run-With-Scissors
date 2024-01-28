@@ -18,10 +18,10 @@ public abstract class PlayerFallDamageMixin {
         LivingEntity entity = (LivingEntity) (Object) this;
 
         if (!entity.level().isClientSide
-                && Config.damageOnFall
+                && Config.isDamageOnFall()
                 && ScissorsUtil.isInHand(entity)
-                && Math.random() < Config.fallingChance) {
-            entity.hurt(((DamageSourcesInterface) entity.damageSources()).fallingScissors(), Config.fallDamage == -1 ? entity.getHealth() : Config.fallDamage);
+                && Math.random() < Config.getFallingChance()) {
+            entity.hurt(((DamageSourcesInterface) entity.damageSources()).fallingScissors(), Config.getFallDamage() == -1 ? entity.getHealth() : Config.getFallDamage());
         }
     }
 }
