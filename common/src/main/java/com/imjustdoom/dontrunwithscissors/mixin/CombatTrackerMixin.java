@@ -1,5 +1,6 @@
 package com.imjustdoom.dontrunwithscissors.mixin;
 
+import com.imjustdoom.dontrunwithscissors.config.Config;
 import com.imjustdoom.dontrunwithscissors.interfaces.DamageSourceInterface;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.damagesource.CombatEntry;
@@ -22,9 +23,9 @@ public abstract class CombatTrackerMixin {
     @Inject(method = "getDeathMessage", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/damagesource/DamageSource;getLocalizedDeathMessage(Lnet/minecraft/world/entity/LivingEntity;)Lnet/minecraft/network/chat/Component;"), locals = LocalCapture.CAPTURE_FAILHARD, cancellable = true)
     public void getDeathMessage(CallbackInfoReturnable<Component> cir, CombatEntry combatEntry, DamageSource damageSource) {
         if (((DamageSourceInterface) damageSource).isScissors()) {
-            cir.setReturnValue(Component.translatable("death.attack.scissors", this.mob.getDisplayName()));
+            cir.setReturnValue(Component.translatable(Config.getSprintingDeathMessage() == null ? "death.attack.scissors" : Config.getSprintingDeathMessage(), this.mob.getDisplayName()));
         } else if (((DamageSourceInterface) damageSource).isFallingScissors()) {
-            cir.setReturnValue(Component.translatable("death.attack.scissors_fall", this.mob.getDisplayName()));
+            cir.setReturnValue(Component.translatable(Config.getFallDeathMessage() == null ? "death.attack.scissors_fall" : Config.getFallDeathMessage(), this.mob.getDisplayName()));
         }
     }
 }

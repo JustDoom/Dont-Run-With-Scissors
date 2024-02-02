@@ -20,7 +20,7 @@
  * THE SOFTWARE.
  */
 
-package com.imjustdoom.dontrunwithscissors.fabric.config;
+package com.imjustdoom.dontrunwithscissors.config;
 
 import net.fabricmc.loader.api.FabricLoader;
 import org.apache.logging.log4j.LogManager;

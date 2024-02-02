@@ -15,7 +15,7 @@ public class Config {
     public static final boolean IGNORE_IN_WATER = true;
     public static final boolean IGNORE_IN_LAVA = true;
 
-    public static final String SPRINTING_DEATH_MESSAGE = "%1$s was running with scissors!"; // TODO: if empty use the default lang file one
+    public static final String SPRINTING_DEATH_MESSAGE = "%1$s was running with scissors!";
     public static final String FALL_DEATH_MESSAGE = "%1$s tripped and fell on their scissors";
     public static final String CANCEL_SPRINTING_MESSAGE = "Oi, Don't run with scissors (shears)";
 

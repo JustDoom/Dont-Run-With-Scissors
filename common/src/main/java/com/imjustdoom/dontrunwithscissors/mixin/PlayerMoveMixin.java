@@ -28,7 +28,7 @@ public abstract class PlayerMoveMixin {
 
             if (Config.isCancelSprinting()) {
 //                player.setSprinting(false);
-                player.displayClientMessage(Component.translatable("warning.scissors"), true); // TODO: use lang file if config is empty
+                player.displayClientMessage(Component.translatable(Config.getCancelSprintingMessage() == null ? "warning.scissors" : Config.getCancelSprintingMessage()), true);
                 return;
             }
 
