@@ -1,26 +1,26 @@
-package com.imjustdoom.dontrunwithscissors.config.forge;
+package com.imjustdoom.dontrunwithscissors.config.neoforge;
 
 import com.imjustdoom.dontrunwithscissors.config.Config;
-import net.minecraftforge.common.ForgeConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec;
 
 public class ConfigImpl {
 
-    public static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
-    public static final ForgeConfigSpec SPEC;
+    public static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
+    public static final ModConfigSpec SPEC;
 
-    private static final ForgeConfigSpec.ConfigValue<Boolean> DAMAGE_IF_SPRINTING;
-    private static final ForgeConfigSpec.ConfigValue<Boolean> DAMAGE_ON_FALL;
-    private static final ForgeConfigSpec.DoubleValue SPRINTING_DAMAGE;
-    private static final ForgeConfigSpec.DoubleValue FALL_DAMAGE; // -1 is insta kill
-    private static final ForgeConfigSpec.DoubleValue SPRINTING_CHANCE; // chance from 0-1 for taking damage
-    private static final ForgeConfigSpec.DoubleValue FALLING_CHANCE;
-    private static final ForgeConfigSpec.ConfigValue<Boolean> CANCEL_SPRINTING;
-    private static final ForgeConfigSpec.ConfigValue<Boolean> IGNORE_IN_WATER;
-    private static final ForgeConfigSpec.ConfigValue<Boolean> IGNORE_IN_LAVA;
+    private static final ModConfigSpec.ConfigValue<Boolean> DAMAGE_IF_SPRINTING;
+    private static final ModConfigSpec.ConfigValue<Boolean> DAMAGE_ON_FALL;
+    private static final ModConfigSpec.DoubleValue SPRINTING_DAMAGE;
+    private static final ModConfigSpec.DoubleValue FALL_DAMAGE; // -1 is insta kill
+    private static final ModConfigSpec.DoubleValue SPRINTING_CHANCE; // chance from 0-1 for taking damage
+    private static final ModConfigSpec.DoubleValue FALLING_CHANCE;
+    private static final ModConfigSpec.ConfigValue<Boolean> CANCEL_SPRINTING;
+    private static final ModConfigSpec.ConfigValue<Boolean> IGNORE_IN_WATER;
+    private static final ModConfigSpec.ConfigValue<Boolean> IGNORE_IN_LAVA;
 
-    private static final ForgeConfigSpec.ConfigValue<String> SPRINTING_DEATH_MESSAGE;
-    private static final ForgeConfigSpec.ConfigValue<String> FALL_DEATH_MESSAGE;
-    private static final ForgeConfigSpec.ConfigValue<String> CANCEL_SPRINTING_MESSAGE;
+    private static final ModConfigSpec.ConfigValue<String> SPRINTING_DEATH_MESSAGE;
+    private static final ModConfigSpec.ConfigValue<String> FALL_DEATH_MESSAGE;
+    private static final ModConfigSpec.ConfigValue<String> CANCEL_SPRINTING_MESSAGE;
 
     static {
         BUILDER.push("settings");
